@@ -12,6 +12,9 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+
+/* CREATE A TASK */
+
 app.post('/todos', (req, res) => {
 
   var todo = new Todo({
@@ -25,6 +28,8 @@ todo.save().then((doc) => {
   });
 });
 
+/* GET ALL TASKS */
+
 app.get('/todos', (req, res) => {
   Todo.find().then((todos) => {
     res.send({todos});
@@ -32,6 +37,8 @@ app.get('/todos', (req, res) => {
     res.status(400).send(e);
   });
 });
+
+/* GET TASKS BY ID */
 
 app.get('/todos/:id', (req, res) => {
   var id = req.params.id;
